@@ -1,18 +1,17 @@
-#!/usr/bin/env scala
+#!/ usr / bin / env scala
 
 import java.io.{File, FileWriter, PrintWriter}
 import java.text.SimpleDateFormat
 import java.util.Date
 import scala.io.Source
 import scala.language.{implicitConversions, reflectiveCalls}
+import scala.util.Try
 
-def using[A, B <: {def close(): Unit}](closeable: B)(f: B => A): A =
-  try {
-    f(closeable)
-  } finally {
-    closeable.close()
-  }
-
+def using[A, B <: {def close(): Unit}](closeable: B)(f: B => A): A = {
+  val result = Try(f(closeable))
+  closeable.close()
+  result.get
+}
 
 if (args.length == 0) sys.error("Pass a directory path as first argument")
 
