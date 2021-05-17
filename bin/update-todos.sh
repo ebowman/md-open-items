@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/zsh --login
 
 source /etc/zshrc
 source /Users/bowmane/.zshrc
