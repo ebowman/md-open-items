@@ -27,7 +27,7 @@ def writeTodos(todos: Seq[(File, Seq[String])]): Unit = {
   val destFile = new File(dir.getAbsolutePath, fileName)
   using(new PrintWriter(new FileWriter(destFile))) { writer =>
     writer.println(s"# Open TODOs")
-    writer.println("(this file is auto-generated every day at 7:00 Berlin time)")
+    writer.println(s"_This file was auto-generated ${new Date()}_")
     writer.println()
     for (todo <- todos) {
       writer.println("\n")
